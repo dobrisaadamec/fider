@@ -35,17 +35,17 @@ func (input *CreateNewPost) Validate(ctx context.Context, user *models.User) *va
 	result := validate.Success()
 
 	if input.Model.Title == "" {
-		result.AddFieldFailure("title", "Title is required.")
+		result.AddFieldFailure("title", "Naziv je obavezan.")
 	} else if len(input.Model.Title) < 10 {
-		result.AddFieldFailure("title", "Title needs to be more descriptive.")
+		result.AddFieldFailure("title", "Naziv bi trebao bolje opisati smisao.")
 	} else if len(input.Model.Title) > 100 {
-		result.AddFieldFailure("title", "Title must have less than 100 characters.")
+		result.AddFieldFailure("title", "Naziv ne smije imati više od 100 znakova.")
 	} else {
 		err := bus.Dispatch(ctx, &query.GetPostBySlug{Slug: slug.Make(input.Model.Title)})
 		if err != nil && errors.Cause(err) != app.ErrNotFound {
 			return validate.Error(err)
 		} else if err == nil {
-			result.AddFieldFailure("title", "This has already been posted before.")
+			result.AddFieldFailure("title", "Ova ideja je već poslana.")
 		}
 	}
 

@@ -39,9 +39,9 @@ const Lonely = () => {
   );
 };
 
-const defaultWelcomeMessage = `We'd love to hear what you're thinking about. 
+const defaultWelcomeMessage = `Voljeli bi od vas čuti što želite. 
 
-What can we do better? This is the place for you to vote, discuss and share ideas.`;
+Što može bolje? Predložite, glasajte, diskutirajte za Karlovac kakav želite.`;
 
 const HomePage = (props: HomePageProps) => {
   const fider = useFider();
@@ -70,7 +70,7 @@ const HomePage = (props: HomePageProps) => {
             style="full"
           />
           <PostInput
-            placeholder={fider.session.tenant.invitation || "Enter your suggestion here..."}
+            placeholder={fider.session.tenant.invitation || "Unesite ideju..."}
             onTitleChanged={setTitle}
           />
         </div>
@@ -80,8 +80,8 @@ const HomePage = (props: HomePageProps) => {
           ) : title ? (
             <SimilarPosts title={title} tags={props.tags} />
           ) : (
-            <PostsContainer posts={props.posts} tags={props.tags} countPerStatus={props.countPerStatus} />
-          )}
+                <PostsContainer posts={props.posts} tags={props.tags} countPerStatus={props.countPerStatus} />
+              )}
         </div>
       </div>
     </div>
